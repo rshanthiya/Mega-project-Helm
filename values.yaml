@@ -1,0 +1,49 @@
+mysql:
+  image: "mysql-8"
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+  database: "bankappdb"
+  MYSQL_ROOT_PASSWORD: "Test@123"
+  pvc:
+    size: "5Gi"
+  service:
+    type: clusterIP
+    port: 3306
+
+
+
+bankapp:
+  replicas: 1
+  image:
+    "adijaiswal/bankapp:latest"
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+    service:
+    type: LoadBalancer
+    port: 80
+
+storageClass:
+  name: "ebs-sc"
+  type: "gp3"
+  fsType: "ext4"
+  reclaimPolicy: "Retain"
+  volumeBindingMode: "WaitForFirstConsumer"
+
+
+
+
+
+
+  
+
+ 
