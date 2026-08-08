@@ -1,7 +1,6 @@
-# ConfigMap for MySQL
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: {{ .Values.mysql.configName }}
+  name: {{ .Values.mysql.configName }}
 data:
-  MYSQL_DATABASE: {{ .Values.mysql.database | quote }}
+  MYSQL_DATABASE: {{ .Values.mysql.database }}
