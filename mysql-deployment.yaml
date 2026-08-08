@@ -1,4 +1,3 @@
-# MySQL Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +15,7 @@ spec:
     spec:
       containers:
       - image: {{ .Values.mysql.image }}
-        name: mysql
+        name: {{ .Values.mysql.name }}
         resources:
           requests:
             memory: {{ .Values.mysql.resources.requests.memory }}
