@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bankapp
+  name: {{ .Values.bankapp.name }}
 spec:
   replicas: {{ .Values.bankapp.replicas}}
   selector:
     matchLabels:
-      app: bankapp
+      app: {{ .Values.bankapp.name }}
   template:
     metadata:
       labels:
-        app: bankapp
+        app:{{ .Values.bankapp.name }}
     spec:
       containers:
-      - name: bankapp
+      - name: {{ .Values.bankapp.name }}
         image: {{ .Values.bankapp.image}}
         resources:
           requests:
@@ -33,5 +33,5 @@ spec:
         - name: SPRING_DATASOURCE_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: {{ .Values.mysql.secretName }}
               key: MYSQL_ROOT_PASSWORD
