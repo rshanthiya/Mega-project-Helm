@@ -2,17 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: {{ .Values.mysql.name }}
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: {{ .Values.mysql.name }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mysql
+        app: {{ .Values.mysql.name }}
     spec:
       containers:
       - image: {{ .Values.mysql.image }}
@@ -28,12 +28,12 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: {{ .Values.mysql.secretName }}
               key: MYSQL_ROOT_PASSWORD
         - name: MYSQL_DATABASE
           valueFrom:
             configMapKeyRef:
-              name: mysql-config
+              name: {{ .Values.mysql.configName }}
               key: MYSQL_DATABASE
         ports:
         - containerPort: 3306
@@ -44,4 +44,4 @@ spec:
       volumes:
       - name: mysql-data
         persistentVolumeClaim:
-          claimName: mysql-pvc
+          claimName: {{ .Values.mysql.pvcName }}
