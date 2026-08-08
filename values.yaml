@@ -28,7 +28,7 @@ bankapp:
     limits:
       memory: "512Mi"
       cpu: "500m"
-    service:
+  service:
     type: LoadBalancer
     port: 80
 
