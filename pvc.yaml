@@ -1,4 +1,3 @@
-# Persistent Volume Claim
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -9,4 +8,4 @@ spec:
   storageClassName: {{ .Values.storageClass.name }}
   resources:
     requests:
-     storage: {{ .Values.mysql.storageSize }}
+      storage: {{ .Values.mysql.storageSize }}
