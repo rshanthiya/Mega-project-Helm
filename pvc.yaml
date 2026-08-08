@@ -9,4 +9,4 @@ spec:
   storageClassName: {{ .Values.storageClass.name }}
   resources:
     requests:
-      storage: {{ .Values.mysql.size }}
+      storage: {{ .Values.mysql.pvc.size }}
