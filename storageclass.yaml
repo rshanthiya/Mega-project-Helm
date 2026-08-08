@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.storageClass.name }}
 provisioner: ebs.csi.aws.com
 parameters:
-  type: {{ .Values.storageClass.type }}
-  fsType: {{ .Values.storageClass.fsType }}
+ type: {{ .Values.storageClass.type }}
+ fsType: {{ .Values.storageClass.fsType }}
 reclaimPolicy: {{ .Values.storageClass.reclaimPolicy }}
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: {{ .Values.storageClass.volumeBindingMode }}
