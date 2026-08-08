@@ -1,4 +1,10 @@
 mysql:
+  name: mysql
+  secretName: mysql-secret
+  configName: mysql-config
+  pvcName: mysql-pvc
+  serviceName: mysql-service
+
   image: "mysql-8"
   resources:
     requests:
@@ -9,8 +15,7 @@ mysql:
       cpu: "1"
   database: "bankappdb"
   MYSQL_ROOT_PASSWORD: "Test@123"
-  pvc:
-    size: "5Gi"
+  storageSize: 5Gi
   service:
     type: clusterIP
     port: 3306
@@ -18,9 +23,12 @@ mysql:
 
 
 bankapp:
+
+  name: bankapp
+  serviceName: bankapp-service
+
   replicas: 1
-  image:
-    "adijaiswal/bankapp:latest"
+  image: "adijaiswal/bankapp:latest"
   resources:
     requests:
       memory: "256Mi"
